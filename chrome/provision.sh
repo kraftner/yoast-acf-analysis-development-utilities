@@ -29,7 +29,11 @@ network_check() {
 
 network_check
 
-wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb
-apt-get -y -f install
-rm google-chrome-stable_current_amd64.deb
+if [ ! -f /opt/google/chrome/chrome ]; then
+  wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  dpkg -i google-chrome-stable_current_amd64.deb
+  apt-get -y -f install
+  rm google-chrome-stable_current_amd64.deb
+else
+  echo "* Chrome already installed"
+fi
